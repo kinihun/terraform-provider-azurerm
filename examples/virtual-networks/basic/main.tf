@@ -13,13 +13,13 @@ terraform {
 resource "azurerm_virtual_network" "vtltd-net" {
   name                = "${var.prefix}-network"
   resource_group_name = "${var.resource_group}"
-  location            = "${azurerm_resource_group.example.location}"
+  location            = "${var.location}"
   address_space       = ["10.0.0.0/16"]
 }
 
-resource "azurerm_subnet" "example" {
+resource "azurerm_subnet" "vtltd-subnet" {
   name                 = "internal"
-  virtual_network_name = "${azurerm_virtual_network.example.name}"
-  resource_group_name  = "vtltd-rg"
+  virtual_network_name = "${azurerm_virtual_network.vtltd-net.name}"
+  resource_group_name  = "${var.resource_group}"
   address_prefix       = "10.0.1.0/24"
 }
