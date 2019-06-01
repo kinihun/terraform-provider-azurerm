@@ -4,15 +4,16 @@ provider "azurerm" {
 
 terraform {
   backend "azurerm" {
-    storage_account_name = "vtltdsa"
+    storage_account_name = "${var.account_name}"
     container_name       = "vtltdtfstate"
     key                  = "basenet"
+    access_key           = "${var.access_key}"
   }
 }
 
 resource "azurerm_virtual_network" "vtltd-net" {
   name                = "${var.prefix}-network"
-  resource_group_name = "vtltd-rg"
+  resource_group_name = "${var.resource_group}"
   location            = "${azurerm_resource_group.example.location}"
   address_space       = ["10.0.0.0/16"]
 }
