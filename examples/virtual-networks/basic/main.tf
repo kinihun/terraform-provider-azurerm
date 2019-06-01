@@ -4,7 +4,7 @@ provider "azurerm" {
 
 terraform {
   backend "azurerm" {
-    storage_account_name = "${var.account_name}"
+    storage_account_name = "vtltdsa"
     container_name       = "vtltdtfstate"
     key                  = "basenet"
   }
