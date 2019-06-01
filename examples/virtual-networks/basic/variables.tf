@@ -8,12 +8,9 @@ variable "location" {
   default = "West Europe"
 }
 
-variable "access_key" {
-  description = "The Azure Storage Account Access Key for Terraform state backend"
-}
-
 variable "account_name" {
   description = "The Azure Storage Account name for Terraform state backend"
+  default = "vtltdsa"
 }
 
 variable "resource_group" {
