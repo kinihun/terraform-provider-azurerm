@@ -5,7 +5,7 @@ variable "prefix" {
 
 variable "location" {
   description = "The Azure location where all resources in this project should be created"
-  default = "West Europe"
+  default = "westeurope"
 }
 
 variable "account_name" {
