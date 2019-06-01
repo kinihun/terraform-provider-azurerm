@@ -2,14 +2,17 @@ provider "azurerm" {
   version = "=1.29.0"
 }
 
-resource "azurerm_resource_group" "example" {
-  name     = "${var.prefix}-resources"
-  location = "${var.location}"
+terraform {
+  backend "azurerm" {
+    storage_account_name = "vtltdsa"
+    container_name       = "vtltdtfstate"
+    key                  = "basenet"
+  }
 }
 
-resource "azurerm_virtual_network" "example" {
+resource "azurerm_virtual_network" "vtltd-net" {
   name                = "${var.prefix}-network"
-  resource_group_name = "${azurerm_resource_group.example.name}"
+  resource_group_name = "vtltd-rg"
   location            = "${azurerm_resource_group.example.location}"
   address_space       = ["10.0.0.0/16"]
 }
@@ -17,6 +20,6 @@ resource "azurerm_virtual_network" "example" {
 resource "azurerm_subnet" "example" {
   name                 = "internal"
   virtual_network_name = "${azurerm_virtual_network.example.name}"
-  resource_group_name  = "${azurerm_resource_group.example.name}"
+  resource_group_name  = "vtltd-rg"
   address_prefix       = "10.0.1.0/24"
 }
