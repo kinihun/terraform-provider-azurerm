@@ -7,7 +7,6 @@ terraform {
     storage_account_name = "${var.account_name}"
     container_name       = "vtltdtfstate"
     key                  = "basenet"
-    access_key           = "${var.access_key}"
   }
 }
 
